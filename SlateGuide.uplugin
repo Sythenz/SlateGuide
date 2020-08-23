@@ -23,6 +23,11 @@
       "Name": "SlateGuideSettings",
       "Type": "Editor",
       "LoadingPhase": "PostEngineInit"
+    },
+    {
+      "Name": "SlateGuideModeCategory",
+      "Type": "Editor",
+      "LoadingPhase": "PostEngineInit"
     }
   ]
 }
