@@ -7,6 +7,8 @@
 #include <Settings/Public/ISettingsContainer.h>
 #include <Settings/Public/ISettingsSection.h>
 #include <PlacementMode/Public/IPlacementModeModule.h>
+#include <SNotificationList.h>
+#include <NotificationManager.h>
 
 static const FName SettingsTabName("Settings");
 
@@ -25,4 +27,4 @@ void FSlateGuideNotificationInfoModule::ShutdownModule()
 
 #undef LOCTEXT_NAMESPACE
 	
-IMPLEMENT_MODULE(FSlateGuideNotificationInfoModule, SlateGuideModeCategory)
+IMPLEMENT_MODULE(FSlateGuideNotificationInfoModule, SlateGuideNotificationInfo)

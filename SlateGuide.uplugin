@@ -33,6 +33,11 @@
       "Name": "SlateGuideModalWindow",
       "Type": "Editor",
       "LoadingPhase": "PostEngineInit"
+    },
+    {
+      "Name": "SlateGuideNotificationInfo",
+      "Type": "Editor",
+      "LoadingPhase": "PostEngineInit"
     }
   ]
 }

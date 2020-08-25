@@ -13,5 +13,8 @@ public:
 	/** IModuleInterface implementation */
 	virtual void StartupModule() override;
 	virtual void ShutdownModule() override;
+
+	//Called from SlateGuideModalWindow module OnClicked delegate binding
+	FReply OnCreateModalWindowNotificationInfo();
 	
 };

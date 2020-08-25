@@ -8,6 +8,13 @@
 #include "Widgets/Layout/SBox.h"
 #include "Widgets/Text/STextBlock.h"
 #include "Framework/MultiBox/MultiBoxBuilder.h"
+#include <SButton.h>
+#include <EditorStyleSet.h>
+
+//Notification includes
+#include <SNotificationList.h>
+#include <NotificationManager.h>
+#include <Reply.h>
 
 static const FName StyleGuideTabName("StyleGuideModalWindow");
 
@@ -31,13 +38,15 @@ void FSlateGuideModalWindowModule::StartupModule()
 		
 	FLevelEditorModule& LevelEditorModule = FModuleManager::LoadModuleChecked<FLevelEditorModule>("LevelEditor");
 	
+	//Register our Slate Modal Window in the Window dropdown of Unreal.
 	{
 		TSharedPtr<FExtender> MenuExtender = MakeShareable(new FExtender());
 		MenuExtender->AddMenuExtension("WindowLayout", EExtensionHook::After, PluginCommands, FMenuExtensionDelegate::CreateRaw(this, &FSlateGuideModalWindowModule::AddMenuExtension));
 
 		LevelEditorModule.GetMenuExtensibilityManager()->AddExtender(MenuExtender);
 	}
-	
+
+	//Register our Slate Modal Window in the main toolbar beside Settings.
 	{
 		TSharedPtr<FExtender> ToolbarExtender = MakeShareable(new FExtender);
 		ToolbarExtender->AddToolBarExtension("Settings", EExtensionHook::After, PluginCommands, FToolBarExtensionDelegate::CreateRaw(this, &FSlateGuideModalWindowModule::AddToolbarExtension));
@@ -74,14 +83,74 @@ TSharedRef<SDockTab> FSlateGuideModalWindowModule::OnSpawnPluginTab(const FSpawn
 		[
 			// Put your tab content here!
 			SNew(SBox)
-			.HAlign(HAlign_Center)
-			.VAlign(VAlign_Center)
+			.HAlign(HAlign_Fill)
+			.VAlign(VAlign_Fill)
+			.WidthOverride(100.0f)
+			.HeightOverride(300.f)
 			[
-				SNew(STextBlock)
-				.Text(WidgetText)
+				SNew(SVerticalBox)
+				+ SVerticalBox::Slot()
+				.FillHeight(0.1f)
+				.Padding(FMargin(4.0f))
+				[
+					SNew(SBorder)
+					.BorderImage(FEditorStyle::GetBrush("ToolPanel.GroupBorder"))
+					.Padding(FMargin(4.0f))
+					[
+						SNew(SVerticalBox)
+						+ SVerticalBox::Slot()
+						.FillHeight(1.0f)
+						[
+							SNew(STextBlock)
+							.Text(WidgetText)
+						]
+					]
+				]
+				+ SVerticalBox::Slot()
+				.FillHeight(1.0f)
+				.Padding(FMargin(4.0f))
+				[
+					SNew(SBorder)
+					.BorderImage(FEditorStyle::GetBrush("ToolPanel.GroupBorder"))
+					.Padding(FMargin(4.0f))
+					[
+
+						SNew(SVerticalBox)
+						+ SVerticalBox::Slot()
+						.FillHeight(1.0f)
+						[
+							SNew(SButton)
+							.ContentPadding(FMargin(1, 0))
+							//We use OnClicked_Raw here because we're currently in a class deriving from IModuleInterface
+							.OnClicked_Raw(this, &FSlateGuideModalWindowModule::OnCreateModalWindowNotificationInfo)
+							[
+								SNew(STextBlock)
+								.Text(FText::FromString(FString(TEXT("Create NotificationInfo"))))
+							]
+						]
+					]
+				]
+
+
 			]
 		];
 }
+
+
+FReply FSlateGuideModalWindowModule::OnCreateModalWindowNotificationInfo()
+{
+	//An example of creating a notification in UE4.
+
+	const FText NotificationText = LOCTEXT("SlateGuideCreateNotificationInfo", "Everybody wants to be a cat");
+
+	FNotificationInfo Info(NotificationText);
+	Info.ExpireDuration = 2.0f;
+	
+	FSlateNotificationManager::Get().AddNotification(Info);
+
+	return FReply::Handled();
+}
+
 
 void FSlateGuideModalWindowModule::PluginButtonClicked()
 {

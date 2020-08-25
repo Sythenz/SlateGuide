@@ -18,6 +18,7 @@ public class SlateGuideModalWindow : ModuleRules
 		PrivateIncludePaths.AddRange(
 			new string[] {
 				// ... add other private include paths required here ...
+                "SlateGuideNotificationInfo"
 			}
 			);
 			
@@ -42,6 +43,7 @@ public class SlateGuideModalWindow : ModuleRules
 				"Engine",
 				"Slate",
 				"SlateCore",
+                "EditorStyle"
 				// ... add private dependencies that you statically link with here ...	
 			}
 			);

@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "Modules/ModuleManager.h"
+#include <Reply.h>
 
 class FToolBarBuilder;
 class FMenuBuilder;
@@ -16,6 +17,9 @@ public:
 	virtual void StartupModule() override;
 	virtual void ShutdownModule() override;
 	
+	//An example of creating a notification in UE4.
+	FReply OnCreateModalWindowNotificationInfo();
+
 	/** This function will be bound to Command (by default it will bring up plugin window) */
 	void PluginButtonClicked();
 	
