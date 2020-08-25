@@ -75,7 +75,7 @@ bool FSlateGuideSettingsModule::HandleSettingsSaved()
 
 	//Validate any settings here. This gets called every time a setting gets changed.
 	//You can get any setting from the above mutable default.
-
+	
 	return true;
 }
 
