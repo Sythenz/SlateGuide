@@ -16,9 +16,6 @@ public:
 	/** IModuleInterface implementation */
 	virtual void StartupModule() override;
 	virtual void ShutdownModule() override;
-	
-	//An example of creating a notification in UE4.
-	FReply OnCreateModalWindowNotificationInfo();
 
 	/** This function will be bound to Command (by default it will bring up plugin window) */
 	void PluginButtonClicked();
@@ -30,6 +27,8 @@ private:
 
 	TSharedRef<class SDockTab> OnSpawnPluginTab(const class FSpawnTabArgs& SpawnTabArgs);
 
+	TSharedPtr<class SBasicWidget> BasicWidget;
+	TSharedPtr<class SNotificationsWidget> NotificationWidget;
 private:
 	TSharedPtr<class FUICommandList> PluginCommands;
 };

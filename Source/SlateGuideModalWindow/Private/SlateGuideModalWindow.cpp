@@ -15,6 +15,8 @@
 #include <SNotificationList.h>
 #include <NotificationManager.h>
 #include <Reply.h>
+#include "SBasicWidget.h"
+#include "SNotificationsWidget.h"
 
 static const FName StyleGuideTabName("StyleGuideModalWindow");
 
@@ -72,11 +74,7 @@ void FSlateGuideModalWindowModule::ShutdownModule()
 
 TSharedRef<SDockTab> FSlateGuideModalWindowModule::OnSpawnPluginTab(const FSpawnTabArgs& SpawnTabArgs)
 {
-	FText WidgetText = FText::Format(
-		LOCTEXT("WindowWidgetText", "Add code to {0} in {1} to override this window's contents"),
-		FText::FromString(TEXT("FSlateGuideModalWindowModule::OnSpawnPluginTab")),
-		FText::FromString(TEXT("SlateGuideModalWindow.cpp"))
-		);
+	FText ExampleText = LOCTEXT("ExampleWidgetText", "Slate Guide Examples");
 
 	return SNew(SDockTab)
 		.TabRole(ETabRole::NomadTab)
@@ -91,66 +89,31 @@ TSharedRef<SDockTab> FSlateGuideModalWindowModule::OnSpawnPluginTab(const FSpawn
 				SNew(SVerticalBox)
 				+ SVerticalBox::Slot()
 				.FillHeight(0.1f)
+				.MaxHeight(32.0f)
+				.Padding(FMargin(10.0f))
+				[
+					SNew(STextBlock)
+					.Text(ExampleText)
+					.Font(FCoreStyle::GetDefaultFontStyle("Regular", 18))
+				]
+				+ SVerticalBox::Slot()
+				.AutoHeight()
 				.Padding(FMargin(4.0f))
 				[
-					SNew(SBorder)
-					.BorderImage(FEditorStyle::GetBrush("ToolPanel.GroupBorder"))
-					.Padding(FMargin(4.0f))
-					[
-						SNew(SVerticalBox)
-						+ SVerticalBox::Slot()
-						.FillHeight(1.0f)
-						[
-							SNew(STextBlock)
-							.Text(WidgetText)
-						]
-					]
+					SAssignNew(BasicWidget, SBasicWidget)
 				]
 				+ SVerticalBox::Slot()
 				.FillHeight(1.0f)
+				.MaxHeight(32.0f)
 				.Padding(FMargin(4.0f))
 				[
-					SNew(SBorder)
-					.BorderImage(FEditorStyle::GetBrush("ToolPanel.GroupBorder"))
-					.Padding(FMargin(4.0f))
-					[
-
-						SNew(SVerticalBox)
-						+ SVerticalBox::Slot()
-						.FillHeight(1.0f)
-						[
-							SNew(SButton)
-							.ContentPadding(FMargin(1, 0))
-							//We use OnClicked_Raw here because we're currently in a class deriving from IModuleInterface
-							.OnClicked_Raw(this, &FSlateGuideModalWindowModule::OnCreateModalWindowNotificationInfo)
-							[
-								SNew(STextBlock)
-								.Text(FText::FromString(FString(TEXT("Create NotificationInfo"))))
-							]
-						]
-					]
+					SAssignNew(NotificationWidget, SNotificationsWidget)
 				]
 
 
 			]
 		];
 }
-
-
-FReply FSlateGuideModalWindowModule::OnCreateModalWindowNotificationInfo()
-{
-	//An example of creating a notification in UE4.
-
-	const FText NotificationText = LOCTEXT("SlateGuideCreateNotificationInfo", "Everybody wants to be a cat");
-
-	FNotificationInfo Info(NotificationText);
-	Info.ExpireDuration = 2.0f;
-	
-	FSlateNotificationManager::Get().AddNotification(Info);
-
-	return FReply::Handled();
-}
-
 
 void FSlateGuideModalWindowModule::PluginButtonClicked()
 {
