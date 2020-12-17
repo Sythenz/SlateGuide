@@ -6,6 +6,7 @@
 #include "Modules/ModuleManager.h"
 #include "Widgets/SBasicWidget.h"
 #include "Widgets/SNotificationsWidget.h"
+#include "Widgets/SDetailsViewWidget.h"
 
 class FToolBarBuilder;
 class FMenuBuilder;
@@ -30,6 +31,9 @@ private:
 
 	TSharedPtr<class SBasicWidget> BasicWidget;
 	TSharedPtr<class SNotificationsWidget> NotificationWidget;
+	TSharedPtr<class SDetailsViewWidget> DetailsViewWidget;
+
+	USlateGuideDetailsViewSettings* DetailSettings;
 private:
 	TSharedPtr<class FUICommandList> PluginCommands;
 };

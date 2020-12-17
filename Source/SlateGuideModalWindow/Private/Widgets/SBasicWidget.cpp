@@ -1,5 +1,6 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
+#include "Widgets/SBasicWidget.h"
 #include "SlateOptMacros.h"
 #include <EditorStyleSet.h>
 

@@ -10,6 +10,7 @@
 #include <Widgets/Input/SButton.h>
 #include "Framework/MultiBox/MultiBoxBuilder.h"
 #include <EditorStyleSet.h>
+#include "Widgets/SDetailsViewWidget.h"
 
 static const FName StyleGuideTabName("StyleGuideModalWindow");
 
@@ -52,6 +53,7 @@ void FSlateGuideModalWindowModule::StartupModule()
 	FGlobalTabmanager::Get()->RegisterNomadTabSpawner(StyleGuideTabName, FOnSpawnTab::CreateRaw(this, &FSlateGuideModalWindowModule::OnSpawnPluginTab))
 		.SetDisplayName(LOCTEXT("FSlateGuideTabName", "Slate Guide Modal Window"))
 		.SetMenuType(ETabSpawnerMenuType::Hidden);
+
 }
 
 void FSlateGuideModalWindowModule::ShutdownModule()
@@ -102,7 +104,13 @@ TSharedRef<SDockTab> FSlateGuideModalWindowModule::OnSpawnPluginTab(const FSpawn
 				[
 					SAssignNew(NotificationWidget, SNotificationsWidget)
 				]
-
+				+ SVerticalBox::Slot()
+				.FillHeight(1.0f)
+				.MaxHeight(32.0f)
+				.Padding(FMargin(4.0f))
+				[
+					SAssignNew(DetailsViewWidget, SDetailsViewWidget)
+				]
 
 			]
 		];

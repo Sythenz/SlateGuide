@@ -1,5 +1,6 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
+#include "Widgets/SNotificationsWidget.h"
 #include "SlateOptMacros.h"
 #include <EditorStyleSet.h>
 #include "SlateGuideModalWindow.h"
