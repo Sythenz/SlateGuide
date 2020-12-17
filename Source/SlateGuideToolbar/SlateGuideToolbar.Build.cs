@@ -11,6 +11,7 @@ public class SlateGuideToolbar : ModuleRules
 		PublicIncludePaths.AddRange(
 			new string[] {
 				// ... add public include paths required here ...
+                "SlateGuideToolbar/Public"
 			}
 			);
 				
@@ -18,6 +19,7 @@ public class SlateGuideToolbar : ModuleRules
 		PrivateIncludePaths.AddRange(
 			new string[] {
 				// ... add other private include paths required here ...
+                "SlateGuideToolbar/Private"
 			}
 			);
 			

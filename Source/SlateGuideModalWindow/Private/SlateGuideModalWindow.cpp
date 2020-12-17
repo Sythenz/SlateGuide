@@ -7,16 +7,9 @@
 #include "Widgets/Docking/SDockTab.h"
 #include "Widgets/Layout/SBox.h"
 #include "Widgets/Text/STextBlock.h"
+#include <Widgets/Input/SButton.h>
 #include "Framework/MultiBox/MultiBoxBuilder.h"
-#include <SButton.h>
 #include <EditorStyleSet.h>
-
-//Notification includes
-#include <SNotificationList.h>
-#include <NotificationManager.h>
-#include <Reply.h>
-#include "SBasicWidget.h"
-#include "SNotificationsWidget.h"
 
 static const FName StyleGuideTabName("StyleGuideModalWindow");
 

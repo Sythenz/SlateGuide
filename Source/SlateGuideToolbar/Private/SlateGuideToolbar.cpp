@@ -2,7 +2,6 @@
 
 #include "SlateGuideToolbar.h"
 #include "ToolbarStyle.h"
-#include "Commands.h"
 #include "Misc/MessageDialog.h"
 #include "Framework/MultiBox/MultiBoxBuilder.h"
 

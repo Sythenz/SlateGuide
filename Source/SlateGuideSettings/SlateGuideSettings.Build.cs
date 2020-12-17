@@ -11,14 +11,16 @@ public class SlateGuideSettings : ModuleRules
 		PublicIncludePaths.AddRange(
 			new string[] {
 				// ... add public include paths required here ...
+                "SlateGuideSettings/Public"
 			}
 			);
 				
 		
 		PrivateIncludePaths.AddRange(
 			new string[] {
-				// ... add other private include paths required here ...
-			}
+                // ... add other private include paths required here ...
+                "SlateGuideSettings/Private"
+            }
 			);
 			
 		

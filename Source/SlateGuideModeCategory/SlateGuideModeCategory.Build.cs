@@ -10,14 +10,16 @@ public class SlateGuideModeCategory : ModuleRules
 		
 		PublicIncludePaths.AddRange(
 			new string[] {
-				// ... add public include paths required here ...
-			}
+                // ... add public include paths required here ...
+                "SlateGuideModeCategory/Public"
+            }
 			);
 				
 		
 		PrivateIncludePaths.AddRange(
 			new string[] {
 				// ... add other private include paths required here ...
+                "SlateGuideModeCategory/Private"
 			}
 			);
 			

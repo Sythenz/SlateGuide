@@ -1,16 +1,12 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
-
-#include "SNotificationsWidget.h"
 #include "SlateOptMacros.h"
-#include <SBorder.h>
 #include <EditorStyleSet.h>
-#include <SBoxPanel.h>
 #include "SlateGuideModalWindow.h"
-#include <SButton.h>
-#include <STextBlock.h>
-#include <NotificationManager.h>
-#include <SNotificationList.h>
+#include <Widgets/SBoxPanel.h>
+#include <Widgets/Notifications/SNotificationList.h>
+#include <Framework/Notifications/NotificationManager.h>
+
 
 BEGIN_SLATE_FUNCTION_BUILD_OPTIMIZATION
 

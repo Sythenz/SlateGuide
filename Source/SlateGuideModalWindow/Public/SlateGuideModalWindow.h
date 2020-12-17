@@ -4,7 +4,8 @@
 
 #include "CoreMinimal.h"
 #include "Modules/ModuleManager.h"
-#include <Reply.h>
+#include "Widgets/SBasicWidget.h"
+#include "Widgets/SNotificationsWidget.h"
 
 class FToolBarBuilder;
 class FMenuBuilder;
